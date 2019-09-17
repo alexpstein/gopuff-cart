@@ -30,7 +30,7 @@ class Item extends Component {
         }
         return (
             <div className="Product">
-                <p className="">{product.name}</p>
+                <p className="Product__name">{product.name}</p>
                 <div className="Description" dangerouslySetInnerHTML={{__html: product.description}}></div>
                 <img src={productImg} alt={product.name} />
             </div>
