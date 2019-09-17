@@ -21,17 +21,27 @@ class App extends Component {
 
   render() {
     let products = <p>Something went wrong.</p>;
+    let subtotal;
+    
     if (this.state.data.cart === undefined) {
       products = <p>Loading...</p>;
+
+      subtotal = 'Getting subtotal...';
     } else if (!this.state.error) {
       products = this.state.data.cart.products.map(product => {
         return <Item key={product.id} id={product.id} />
       });
-      
+
+      subtotal = this.state.data.cart.products.map(product => {
+        return product.quantity * product.price;
+      }).reduce((acc, cur) => acc + cur).toFixed(2);
     }
 
     return (
       <div className="App">
+        <section className="Order">
+          <p>Subtotal: {subtotal}</p>
+        </section>
         <section className="Products">
           {products}
         </section>
